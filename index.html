@@ -1,5 +1,64 @@
-<header>
-<link href="index.css"/>
-</header>
-<h1>����h1</h1>
-<h1>����h1�ڶ���</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text"><button>百度一下</button>
+<ul></ul>
+
+
+</body>
+<script>
+//    https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?
+//
+    var inp = document.querySelector('input');
+    var ul = document.querySelector('ul');
+
+
+
+//    可以拿到后台返回的数据 解析数据
+    function search(data) {
+//        data.s 就是我们要的数据
+        var str = '';
+        for(var i = 0; i < data.s.length; i++){
+            str += '<li>'+data.s[i]+'</li>';
+        }
+        ul.innerHTML = str;
+    }
+
+//    什么时候发送请求
+    inp.addEventListener('keyup',function () {
+        var text = this.value;
+        var url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=search&wd=' + text;
+//        发送请求
+       jsop(url);
+    });
+
+
+    function jsop(url) {
+        var script = document.createElement('script');
+        script.src = url;
+        document.querySelector('html').appendChild(script);
+        setTimeout(function () {
+            document.querySelector('html').removeChild(script);
+        },100);
+    }
+
+//    search({adsadsadsad})
+</script>
+
+<!--<script>-->
+    <!---->
+    <!--function a() {-->
+        <!---->
+    <!--}-->
+    <!---->
+<!--</script>-->
+
+<!--<script src="a.js"></script>-->
+<!--a()-->
+
+</html>
